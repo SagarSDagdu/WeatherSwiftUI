@@ -27,24 +27,33 @@ struct ContentView: View {
                 Text("35°")
                     .font(.system(size: 64, weight: .regular))
                     .foregroundColor(.white)
-                HStack() {
-                    VStack(spacing :6) {
-                        Text("Mon")
-                            .foregroundColor(.white)
-                            .bold()
-                        Image(systemName: "cloud.sun.fill")
-                            .renderingMode(.original)
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 40, height: 40)
-                        Text("31°")
-                            .font(.system(size: 22, weight: .regular))
-                            .foregroundColor(.white)
-                    }
+                HStack(spacing: 12) {
+                    DayWeatherView()
+                    DayWeatherView()
+                    DayWeatherView()
+                    DayWeatherView()
                 }
                 
                 Spacer()
             }
+        }
+    }
+}
+
+struct DayWeatherView: View {
+    var body: some View {
+        VStack(spacing :6) {
+            Text("Mon")
+                .foregroundColor(.white)
+                .bold()
+            Image(systemName: "cloud.sun.fill")
+                .renderingMode(.original)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 40, height: 40)
+            Text("31°")
+                .font(.system(size: 22, weight: .regular))
+                .foregroundColor(.white)
         }
     }
 }
