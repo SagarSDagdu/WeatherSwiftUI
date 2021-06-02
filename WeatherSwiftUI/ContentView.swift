@@ -35,6 +35,17 @@ struct ContentView: View {
                 }
                 
                 Spacer()
+                HStack {
+                    Spacer()
+                    Button("Change Time of day") { }
+                    .foregroundColor(.blue)
+                    .frame(width: 250, height: 44)
+                    .font(.system(size: 22, weight: .regular))
+                    .background(Color.white)
+                    .cornerRadius(10)
+                    .shadow(radius: 2)
+                    Spacer()
+                }
             }
         }
     }
