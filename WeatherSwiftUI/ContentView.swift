@@ -10,15 +10,13 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         ZStack {
-            LinearGradient(gradient: Gradient(colors: [.blue, .white]),
-                           startPoint: .topLeading,
-                           endPoint: .bottomTrailing)
+            LinearGradient(gradient: Gradient(colors: [.blue, .white]), startPoint: .topLeading, endPoint: .bottomTrailing)
                 .ignoresSafeArea()
             VStack(spacing: 8) {
                 Text("Pune")
                     .foregroundColor(.white)
                     .font(.system(size: 32, weight: .medium, design: .default))
-                    .padding()
+                    .padding(.top)
                 Image(systemName: "cloud.sun.fill")
                     .renderingMode(.original)
                     .resizable()
@@ -27,11 +25,13 @@ struct ContentView: View {
                 Text("35°")
                     .font(.system(size: 64, weight: .regular))
                     .foregroundColor(.white)
-                HStack(spacing: 12) {
-                    DayWeatherView()
-                    DayWeatherView()
-                    DayWeatherView()
-                    DayWeatherView()
+                    .padding()
+                HStack(spacing: 24) {
+                    DayWeatherView(day: "Mon", systemImageName: "cloud.sun.fill", temperatureText: "31°")
+                    DayWeatherView(day: "Tue", systemImageName: "sun.max.fill", temperatureText: "36°")
+                    DayWeatherView(day: "Wed", systemImageName: "wind", temperatureText: "30°")
+                    DayWeatherView(day: "Thu", systemImageName: "cloud.bolt.rain.fill", temperatureText: "30°")
+                    DayWeatherView(day: "Fri", systemImageName: "sun.dust.fill", temperatureText: "31°")
                 }
                 
                 Spacer()
@@ -41,18 +41,23 @@ struct ContentView: View {
 }
 
 struct DayWeatherView: View {
+    var day: String
+    var systemImageName: String
+    var temperatureText: String
+    
     var body: some View {
         VStack(spacing :6) {
-            Text("Mon")
+            Text(day)
                 .foregroundColor(.white)
-                .bold()
-            Image(systemName: "cloud.sun.fill")
+                .font(.system(size: 22))
+            Image(systemName: systemImageName)
                 .renderingMode(.original)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 40, height: 40)
-            Text("31°")
-                .font(.system(size: 22, weight: .regular))
+                .padding(.init(top: 4, leading: 0, bottom: 0, trailing: 0))
+            Text(temperatureText)
+                .font(.system(size: 24, weight: .semibold))
                 .foregroundColor(.white)
         }
     }
