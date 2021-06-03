@@ -14,8 +14,11 @@ struct ContentView: View {
         ZStack {
             TopToBottomGradientView(topColor: isNight ? .black: .blue, bottomColor: isNight ? .gray : .white)
             VStack(spacing: 8) {
-                TodayWeatherView(cityName: "Pune", weatherImageSystemName: isNight ? "moon.stars.fill" : "cloud.sun.fill", temperatureText: isNight ? "30°" : "35°")
-                HStack(spacing: 24) {
+                TodayWeatherView(cityName: "Pune",
+                                 weatherImageSystemName: isNight ? "moon.stars.fill" : "cloud.sun.fill",
+                                 temperatureText: isNight ? "30°" : "35°")
+                    .padding(.bottom)
+                HStack(spacing: 22) {
                     DayWeatherView(day: "Mon", systemImageName: "cloud.sun.fill", temperatureText: "31°")
                     DayWeatherView(day: "Tue", systemImageName: "sun.max.fill", temperatureText: "36°")
                     DayWeatherView(day: "Wed", systemImageName: "wind", temperatureText: "30°")
