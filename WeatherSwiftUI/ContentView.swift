@@ -34,19 +34,9 @@ struct ContentView: View {
                 }
                 
                 Spacer()
-                HStack {
-                    Spacer()
-                    Button("Change Time of day") { }
-                    .foregroundColor(.blue)
-                    .frame(width: 250, height: 44)
-                    .font(.system(size: 22, weight: .regular))
-                    .background(Color.white)
-                    .cornerRadius(10)
-                    .shadow(radius: 2)
-                    .padding()
-                    Spacer()
-                }
-            }
+                
+                WeatherButton(title: "Change Time of day", textColor: .blue, backgroundColor: .white)
+            }.padding(.bottom, 40)
         }
     }
 }
@@ -81,6 +71,21 @@ struct TopToBottomGradientView: View {
     var body: some View {
         LinearGradient(gradient: Gradient(colors: [topColor, bottomColor]), startPoint: .topLeading, endPoint: .bottomTrailing)
             .ignoresSafeArea()
+    }
+}
+
+struct WeatherButton: View {
+    var title: String
+    var textColor: Color
+    var backgroundColor: Color
+    
+    var body: some View {
+        Text(title)
+            .frame(width: 280, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+            .foregroundColor(textColor)
+            .background(backgroundColor)
+            .font(.system(size: 20, weight: .bold, design: .default))
+            .cornerRadius(10)
     }
 }
 
