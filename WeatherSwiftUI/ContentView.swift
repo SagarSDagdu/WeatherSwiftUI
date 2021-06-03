@@ -12,19 +12,7 @@ struct ContentView: View {
         ZStack {
             TopToBottomGradientView(topColor: .blue, bottomColor: .white)
             VStack(spacing: 8) {
-                Text("Pune")
-                    .foregroundColor(.white)
-                    .font(.system(size: 32, weight: .medium, design: .default))
-                    .padding(.top)
-                Image(systemName: "cloud.sun.fill")
-                    .renderingMode(.original)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 180, height: 180)
-                Text("35°")
-                    .font(.system(size: 64, weight: .regular))
-                    .foregroundColor(.white)
-                    .padding()
+                TodayWeatherView(cityName: "Pune", weatherImageSystemName: "cloud.sun.fill", temperatureText: "35°")
                 HStack(spacing: 24) {
                     DayWeatherView(day: "Mon", systemImageName: "cloud.sun.fill", temperatureText: "31°")
                     DayWeatherView(day: "Tue", systemImageName: "sun.max.fill", temperatureText: "36°")
@@ -74,18 +62,24 @@ struct TopToBottomGradientView: View {
     }
 }
 
-struct WeatherButton: View {
-    var title: String
-    var textColor: Color
-    var backgroundColor: Color
+struct TodayWeatherView: View {
+    var cityName: String
+    var weatherImageSystemName: String
+    var temperatureText: String
     
     var body: some View {
-        Text(title)
-            .frame(width: 280, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-            .foregroundColor(textColor)
-            .background(backgroundColor)
-            .font(.system(size: 20, weight: .bold, design: .default))
-            .cornerRadius(10)
+        Text(cityName)
+            .foregroundColor(.white)
+            .font(.system(size: 32, weight: .medium, design: .default))
+            .padding(.top)
+        Image(systemName: weatherImageSystemName)
+            .renderingMode(.original)
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .frame(width: 180, height: 180)
+        Text(temperatureText)
+            .font(.system(size: 64, weight: .regular))
+            .foregroundColor(.white)
     }
 }
 
