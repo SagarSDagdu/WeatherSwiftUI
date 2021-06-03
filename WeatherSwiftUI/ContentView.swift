@@ -8,11 +8,13 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var isNight = true
+    
     var body: some View {
         ZStack {
-            TopToBottomGradientView(topColor: .blue, bottomColor: .white)
+            TopToBottomGradientView(topColor: isNight ? .black: .blue, bottomColor: isNight ? .gray : .white)
             VStack(spacing: 8) {
-                TodayWeatherView(cityName: "Pune", weatherImageSystemName: "cloud.sun.fill", temperatureText: "35°")
+                TodayWeatherView(cityName: "Pune", weatherImageSystemName: isNight ? "moon.stars.fill" : "cloud.sun.fill", temperatureText: isNight ? "30°" : "35°")
                 HStack(spacing: 24) {
                     DayWeatherView(day: "Mon", systemImageName: "cloud.sun.fill", temperatureText: "31°")
                     DayWeatherView(day: "Tue", systemImageName: "sun.max.fill", temperatureText: "36°")
@@ -22,9 +24,12 @@ struct ContentView: View {
                 }
                 
                 Spacer()
-                
-                WeatherButton(title: "Change Time of day", textColor: .blue, backgroundColor: .white)
-            }.padding(.bottom, 40)
+                Button(action: {
+                    isNight.toggle()
+                }, label: {
+                    WeatherButton(title: "Change Time of day", textColor: .blue, backgroundColor: .white)
+                }).padding(.bottom, 40)
+            }
         }
     }
 }
@@ -57,7 +62,7 @@ struct TopToBottomGradientView: View {
     var bottomColor: Color
 
     var body: some View {
-        LinearGradient(gradient: Gradient(colors: [topColor, bottomColor]), startPoint: .topLeading, endPoint: .bottomTrailing)
+        LinearGradient(gradient: Gradient(colors: [topColor, bottomColor]), startPoint: .top, endPoint: .bottom)
             .ignoresSafeArea()
     }
 }
